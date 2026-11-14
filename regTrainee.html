@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Martial Arts Trainer – Trainee Registry</title>
+  <script src="https://accounts.google.com/gsi/client" async defer></script>
+  <style>
+    * { box-sizing: border-box; font-family: system-ui, sans-serif; }
+    body { max-width: 640px; margin: 40px auto; padding: 0 16px; background: #f7f7f9; color: #222; }
+    h1 { font-size: 1.4rem; }
+    .card { background: #fff; border-radius: 10px; padding: 20px; margin-bottom: 16px; box-shadow: 0 1px 4px rgba(0,0,0,.08); }
+    label { display: block; font-weight: 600; margin: 12px 0 4px; font-size: .9rem; }
+    input, select { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 6px; font-size: 1rem; }
+    button { padding: 10px 16px; border: none; border-radius: 6px; font-size: 1rem; cursor: pointer; }
+    button.primary { background: #1a73e8; color: #fff; }
+    button.primary:disabled { background: #9bbcf0; cursor: not-allowed; }
+    button.secondary { background: #e8eaed; color: #222; }
+    .status { font-size: .85rem; margin-top: 10px; }
+    .status.ok { color: #1e8e3e; }
+    .status.err { color: #d93025; }
+    .user-box { display: flex; align-items: center; gap: 12px; }
+    .user-box img { width: 36px; height: 36px; border-radius: 50%; }
+    table { width: 100%; border-collapse: collapse; margin-top: 12px; font-size: .9rem; }
+    th, td { text-align: left; padding: 8px; border-bottom: 1px solid #eee; }
+    th { background: #fafafa; }
+    .hidden { display: none; }
+  </style>
+</head>
+<body>
+
+  <h1>🥋 Trainee Registry</h1>
+
+  <!-- ============ AUTH SECTION ============ -->
+  <div class="card" id="authCard">
+    <p>Sign in with Google to record trainees to your Drive.</p>
+    <div id="g_id_onload"
+         data-client_id="YOUR_CLIENT_ID.apps.googleusercontent.com"
+         data-callback="handleCredentialResponse"
+         data-auto_prompt="false">
+    </div>
+    <div class="g_id_signin" data-type="standard"></div>
+    <div class="status" id="authStatus"></div>
+  </div>
+
+  <!-- ============ USER INFO ============ -->
+  <div class="card hidden" id="userCard">
+    <div class="user-box">
+      <img id="userPic" alt="" />
+      <div>
+        <strong id="userName"></strong><br />
+        <span id="userEmail" style="font-size:.85rem;color:#555;"></span>
+      </div>
+    </div>
+    <button class="secondary" style="margin-top:14px" onclick="signOut()">Sign out</button>
+  </div>
+
+  <!-- ============ TRAINEE FORM ============ -->
+  <div class="card hidden" id="formCard">
+    <h2 style="font-size:1.1rem;margin-top:0">Add Trainee</h2>
+
+    <label for="traineeName">Trainee Name</label>
+    <input id="traineeName" type="text" placeholder="e.g. Ahmed Ali" />
+
+    <label for="beltDegree">Belt Degree</label>
+    <select id="beltDegree">
+      <option value="">-- Select --</option>
+      <option>White Belt</option>
+      <option>Yellow Belt</option>
+      <option>Orange Belt</option>
+      <option>Green Belt</option>
+      <option>Blue Belt</option>
+      <option>Purple Belt</option>
+      <option>Brown Belt</option>
+      <option>Black Belt – 1st Dan</option>
+      <option>Black Belt – 2nd Dan</option>
+      <option>Black Belt – 3rd Dan</option>
+      <option>Black Belt – 4th Dan</option>
+      <option>Black Belt – 5th Dan</option>
+    </select>
+
+    <div style="margin-top:16px;display:flex;gap:8px;flex-wrap:wrap;">
+      <button class="primary" id="addBtn" onclick="addTrainee()">➕ Add Trainee</button>
+      <button class="primary" id="saveBtn" onclick="saveToDrive()" disabled>☁️ Save to Google Drive</button>
+    </div>
+
+    <div class="status" id="saveStatus"></div>
+
+    <table id="traineeTable" class="hidden">
+      <thead>
+        <tr><th>#</th><th>Name</th><th>Belt</th><th></th></tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </div>
+
+<script>
+/* =========================================================
+   CONFIG
+   ========================================================= */
+const CLIENT_ID = 'YOUR_CLIENT_ID.apps.googleusercontent.com';
+// drive.file = app can only see/create files IT made. Safer than full 'drive'.
+const SCOPES = 'https://www.googleapis.com/auth/drive.file';
+
+/* =========================================================
+   STATE
+   ========================================================= */
+let accessToken = null;
+let tokenClient = null;
+let currentUser = { email: '', name: '', picture: '' };
+let trainees = []; // { name, belt }
+
+/* =========================================================
+   GOOGLE IDENTITY – TOKEN CLIENT
+   ========================================================= */
+window.onload = () => {
+  tokenClient = google.accounts.oauth2.initTokenClient({
+    client_id: CLIENT_ID,
+    scope: SCOPES,
+    callback: (resp) => {
+      if (resp.error) {
+        setStatus('authStatus', 'Authorization failed: ' + resp.error, 'err');
+        return;
+      }
+      accessToken = resp.access_token;
+      setStatus('authStatus', '✅ Drive access granted', 'ok');
+      showUI();
+    },
+  });
+};
+
+/* Called by the Google Sign-In button (ID token flow) */
+function handleCredentialResponse(response) {
+  // Decode the JWT ID token (payload is base64url)
+  const payload = JSON.parse(atob(response.credential.split('.')[1]));
+  currentUser = {
+    email: payload.email,
+    name: payload.name,
+    picture: payload.picture,
+  };
+  document.getElementById('userEmail').textContent = currentUser.email;
+  document.getElementById('userName').textContent = currentUser.name;
+  document.getElementById('userPic').src = currentUser.picture;
+
+  // Now request the Drive access token
+  tokenClient.requestAccessToken({ prompt: '' });
+}
+
+/* =========================================================
+   UI HELPERS
+   ========================================================= */
+function showUI() {
+  document.getElementById('userCard').classList.remove('hidden');
+  document.getElementById('formCard').classList.remove('hidden');
+  document.getElementById('authCard').classList.add('hidden');
+}
+
+function setStatus(id, msg, cls = '') {
+  const el = document.getElementById(id);
+  el.textContent = msg;
+  el.className = 'status ' + cls;
+}
+
+function signOut() {
+  if (accessToken) google.accounts.oauth2.revoke(accessToken, () => {});
+  accessToken = null;
+  currentUser = {};
+  trainees = [];
+  document.getElementById('userCard').classList.add('hidden');
+  document.getElementById('formCard').classList.add('hidden');
+  document.getElementById('authCard').classList.remove('hidden');
+  document.getElementById('authStatus').textContent = '';
+}
+
+/* =========================================================
+   TRAINEE LIST
+   ========================================================= */
+function addTrainee() {
+  const name = document.getElementById('traineeName').value.trim();
+  const belt = document.getElementById('beltDegree').value;
+  if (!name || !belt) {
+    setStatus('saveStatus', 'Please enter a name and select a belt.', 'err');
+    return;
+  }
+  trainees.push({ name, belt });
+  document.getElementById('traineeName').value = '';
+  document.getElementById('beltDegree').value = '';
+  setStatus('saveStatus', '');
+  renderTable();
+  document.getElementById('saveBtn').disabled = false;
+}
+
+function removeTrainee(index) {
+  trainees.splice(index, 1);
+  renderTable();
+  document.getElementById('saveBtn').disabled = trainees.length === 0;
+}
+
+function renderTable() {
+  const table = document.getElementById('traineeTable');
+  const tbody = table.querySelector('tbody');
+  tbody.innerHTML = '';
+  if (trainees.length === 0) {
+    table.classList.add('hidden');
+    return;
+  }
+  table.classList.remove('hidden');
+  trainees.forEach((t, i) => {
+    const tr = document.createElement('tr');
+    tr.innerHTML = `
+      <td>${i + 1}</td>
+      <td>${escapeHtml(t.name)}</td>
+      <td>${escapeHtml(t.belt)}</td>
+      <td><button class="secondary" style="padding:4px 8px;font-size:.8rem"
+                 onclick="removeTrainee(${i})">✕</button></td>`;
+    tbody.appendChild(tr);
+  });
+}
+
+function escapeHtml(s) {
+  return s.replace(/[&<>"']/g, c => ({
+    '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'
+  }[c]));
+}
+
+/* =========================================================
+   SAVE TO GOOGLE DRIVE
+   Creates a JSON file named after the trainer + date.
+   ========================================================= */
+async function saveToDrive() {
+  if (!accessToken) {
+    setStatus('saveStatus', 'No Drive token – please sign in again.', 'err');
+    return;
+  }
+  if (trainees.length === 0) {
+    setStatus('saveStatus', 'No trainees to save.', 'err');
+    return;
+  }
+
+  const btn = document.getElementById('saveBtn');
+  btn.disabled = true;
+  setStatus('saveStatus', 'Uploading…');
+
+  const now = new Date();
+  const stamp = now.toISOString().slice(0, 10);            // YYYY-MM-DD
+  const safeEmail = currentUser.email.replace(/[^a-z0-9]/gi, '_');
+  const fileName = `trainees_${safeEmail}_${stamp}.json`;
+
+  const payload = {
+    trainer: {
+      name: currentUser.name,
+      email: currentUser.email,
+    },
+    savedAt: now.toISOString(),
+    trainees: trainees,
+  };
+
+  // Multipart upload: metadata + file content
+  const metadata = { name: fileName, mimeType: 'application/json' };
+  const form = new FormData();
+  form.append('metadata',
+    new Blob([JSON.stringify(metadata)], { type: 'application/json' }));
+  form.append('file',
+    new Blob([JSON.stringify(payload, null, 2)], { type: 'application/json' }));
+
+  try {
+    const res = await fetch(
+      'https://www.googleapis.com/upload/drive/v3/files?uploadType=multipart&fields=id,name,webViewLink',
+      {
+        method: 'POST',
+        headers: { Authorization: `Bearer ${accessToken}` },
+        body: form,
+      }
+    );
+
+    if (!res.ok) {
+      const err = await res.json().catch(() => ({}));
+      throw new Error(err.error?.message || `HTTP ${res.status}`);
+    }
+
+    const data = await res.json();
+    setStatus(
+      'saveStatus',
+      `✅ Saved "${data.name}" to Drive (id: ${data.id})`,
+      'ok'
+    );
+
+    // Optional: clear the list after successful save
+    // trainees = []; renderTable();
+  } catch (e) {
+    console.error(e);
+    setStatus('saveStatus', '❌ Upload failed: ' + e.message, 'err');
+    btn.disabled = false;
+  }
+}
+</script>
+</body>
+</html>
