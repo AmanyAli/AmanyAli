@@ -188,29 +188,19 @@
       background: #e2e8f0;
       display: block;
     }
+    /* Specific styling for the certificate to ensure it fits nicely in the grid */
+    .gallery .gallery-cert img {
+      height: auto;
+      min-height: 260px;
+      max-height: 400px;
+      object-fit: contain;
+      background: #ffffff;
+    }
     .gallery figcaption {
       padding: 0.65rem 0.85rem;
       font-size: 0.88rem;
       color: var(--muted);
-    }
-    .cert-card {
-      margin-top: 1.25rem;
-      background: var(--bg);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 1rem;
-      text-align: center;
-    }
-    .cert-card img {
-      max-width: 100%;
-      max-height: 420px;
-      border-radius: 6px;
-      border: 1px solid var(--border);
-    }
-    .cert-card p {
-      margin: 0.65rem 0 0 0;
-      font-size: 0.9rem;
-      color: var(--muted);
+      margin-top: auto; /* Pushes caption to the bottom */
     }
     ul {
       padding-left: 1.2rem;
@@ -403,7 +393,6 @@
           <figcaption>Nidan (2nd Dan) Milestone</figcaption>
         </figure>
         
-        <!-- Takreem Images Added -->
         <figure>
           <img
             src="images/takreem1.jpg"
@@ -419,7 +408,6 @@
           <figcaption>Aikido Award Ceremony</figcaption>
         </figure>
 
-        <!-- Screenshot Image -->
         <figure>
           <img
             src="images/Screenshot.jpg"
@@ -427,14 +415,16 @@
           />
           <figcaption>Aikido Practice &amp; Dojo Moments</figcaption>
         </figure>
-      </div>
 
-      <div class="cert-card">
-        <img
-          src="images/Dan3Cert.jpeg"
-          alt="Aikikai Hombu Dojo Tokyo Japan 3rd Dan Sandan Black Belt Certificate - Amany Abd El-Tawab Ali"
-        />
-        <p><strong>Official 3rd Dan (Sandan) Black Belt Certificate</strong> – Aikikai Hombu Dojo, Tokyo, Japan</p>
+        <!-- The Sandan Certificate is now inside the gallery grid -->
+        <figure class="gallery-cert">
+          <img
+            src="images/Dan3Cert.jpeg"
+            alt="Aikikai Hombu Dojo Tokyo Japan 3rd Dan Sandan Black Belt Certificate - Amany Abd El-Tawab Ali"
+          />
+          <figcaption><strong>Official 3rd Dan (Sandan) Black Belt Certificate</strong> – Aikikai Hombu Dojo, Tokyo, Japan</figcaption>
+        </figure>
+
       </div>
     </section>
 
