@@ -1,7 +1,7 @@
 # Amany Abd El-Tawab Ali | أماني عبد التواب علي
 
 **Senior Software Engineer (Full-Stack Java & Salesforce)** • **3rd Dan (Sandan) Aikido Instructor in Cairo, Egypt**  
-📍 Cairo, Egypt • ✉️ [your.email@example.com](mailto:your.email@example.com) • 🔗 [LinkedIn](https://linkedin.com/in/yourprofile)
+📍 Cairo, Egypt • ✉️ [amany.a.ali@gmail.com](mailto:amany.a.ali@gmail.com • 🔗 [LinkedIn](https://www.linkedin.com/in/amany-ali-2785771a/)
 
 ---
 
