@@ -11,7 +11,6 @@
 
   <meta name="description" content="Amany Abd El-Tawab Ali (أماني عبد التواب علي) – Communication Engineer, Senior Full-Stack Java &amp; Salesforce Software Engineer, and Japanese-certified 3rd Dan (Sandan) Aikido Instructor in Cairo, Egypt. Specializing in self-defense for women (دفاع عن النفس سيدات) and kids (تدريب أيكيدو للاطفال)." />
 
-  <!-- الكلمات المفتاحية المخفية: تشمل Expats و English Speaking ليظهر لك الأجانب دون الإعلان صراحة -->
   <meta name="keywords" content="Amany Ali, Amany Abd El-Tawab Ali, أماني عبد التواب علي, Communication Engineer, مهندسة اتصالات, Senior Software Engineer Cairo, Java Developer, Salesforce Developer, SCADA Systems, 3rd Dan Aikido Instructor, Aikido instructor Egypt, مدربة أيكيدو 3 دان, مدربة أيكيدو في مصر, الدفاع عن النفس للسيدات, دفاع عن النفس سيدات, تدريب أطفال أيكيدو, تدريب أيكيدو للاطفال, تعليم آيكيدو القاهرة, كابتن أماني أيكيدو, أماكن تدريب أيكيدو في مصر, مدارس آيكيدو القاهرة, حزام أسود أيكيدو مصر, Aikido ladies Egypt, Aikido kids Cairo, Self defense for women Egypt, كورس دفاع عن النفس للبنات, تدريب فنون قتالية سيدات, مدربة دفاع عن النفس, تعلم الدفاع عن النفس للأطفال, Fukushidoin, Aikido for Expats Cairo, English Speaking Aikido Instructor" />
   
   <meta name="author" content="Amany Abd El-Tawab Ali">
@@ -106,51 +105,122 @@
       padding: 2.25rem;
       box-shadow: 0 4px 20px rgba(15, 23, 42, 0.05);
     }
+
+    /* ==========================================
+       Improved Header & Profile Layout
+       ========================================== */
     .header {
       display: flex;
-      gap: 1.75rem;
       align-items: center;
-      flex-wrap: wrap;
-      border-bottom: 1px solid var(--border);
-      padding-bottom: 1.75rem;
-      margin-bottom: 1.75rem;
+      gap: 2rem;
+      padding-bottom: 2rem;
+      margin-bottom: 2rem;
+      border-bottom: 2px solid var(--border);
     }
     .profile-photo {
-      width: 155px;
-      height: 155px;
+      width: 180px;
+      height: 180px;
       object-fit: cover;
-      object-position: top;
-      border-radius: 12px;
-      border: 2px solid var(--border);
+      object-position: top center;
+      border-radius: 50%; /* Makes the photo circular for a professional look */
+      border: 4px solid var(--bg);
+      box-shadow: 0 4px 15px rgba(30, 58, 138, 0.15);
+      flex-shrink: 0;
+      transition: transform 0.3s ease;
+    }
+    .profile-photo:hover {
+      transform: scale(1.03);
+    }
+    .header-content {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
     }
     h1 {
-      margin: 0 0 0.35rem 0;
-      font-size: 1.75rem;
+      margin: 0;
+      font-size: 2rem;
+      color: var(--accent);
+      line-height: 1.2;
+    }
+    .name-ar {
+      font-size: 1.6rem;
+      color: var(--text);
+      margin: 0;
     }
     .subtitle {
-      color: var(--accent);
+      font-size: 1.1rem;
       font-weight: 600;
-      margin: 0 0 0.5rem 0;
+      color: var(--text);
+      margin: 0;
+      line-height: 1.4;
+    }
+    .subtitle-ar {
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: var(--accent);
+      margin: 0;
+      direction: rtl;
     }
     .meta {
-      color: var(--muted);
       font-size: 0.95rem;
+      color: var(--muted);
+      margin-top: 0.5rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      align-items: center;
     }
+    .meta a {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 500;
+    }
+    .meta a:hover {
+      text-decoration: underline;
+    }
+    .separator {
+      color: var(--border);
+    }
+
+    /* Responsive Design for Mobile */
+    @media (max-width: 650px) {
+      .header {
+        flex-direction: column;
+        text-align: center;
+        gap: 1rem;
+      }
+      .header-content {
+        align-items: center;
+      }
+      .meta {
+        justify-content: center;
+      }
+      h1 {
+        font-size: 1.6rem;
+      }
+      .name-ar {
+        font-size: 1.3rem;
+      }
+    }
+
+    /* ==========================================
+       Other Sections Styling
+       ========================================== */
     h2 {
-      font-size: 1.2rem;
+      font-size: 1.25rem;
       color: var(--accent);
       border-bottom: 1px solid var(--border);
       padding-bottom: 0.4rem;
-      margin-top: 1.75rem;
+      margin-top: 2rem;
     }
     .grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 1.25rem;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
     }
     .box {
       background: var(--bg);
-      padding: 1.1rem 1.35rem;
+      padding: 1.25rem 1.5rem;
       border-radius: 8px;
       border: 1px solid var(--border);
     }
@@ -247,33 +317,34 @@
       padding-left: 1.2rem;
       margin: 0.5rem 0;
     }
-    a {
-      color: var(--accent);
-      text-decoration: none;
-    }
-    a:hover {
-      text-decoration: underline;
-    }
   </style>
 </head>
 <body>
   <main class="container">
+    
+    <!-- Improved Header Section -->
     <header class="header">
       <img
         src="images/Nidan2.jpg"
         alt="Amany Abd El-Tawab Ali - Communication Engineer, Senior Software Engineer and 3rd Dan Aikido Instructor in Cairo, Egypt (مدربة أيكيدو 3 دان)"
         class="profile-photo"
       />
-      <div>
-        <h1>Amany Abd El-Tawab Ali | أماني عبد التواب علي</h1>
+      <div class="header-content">
+        <h1>Amany Abd El-Tawab Ali</h1>
+        <p class="name-ar">أماني عبد التواب علي</p>
+        
         <p class="subtitle">Communication Engineer | Senior Software Engineer (Java &amp; Salesforce) • 3rd Dan Aikido Instructor &amp; Fukushidoin</p>
-        <p class="subtitle" style="font-size: 1.05rem; margin-top: 0.2rem;">مهندسة اتصالات وبرمجيات أولى | مدربة أيكيدو 3 دان ودفاع عن النفس سيدات وأطفال</p>
-        <p class="meta">
-          📍 Cairo, Egypt &nbsp;•&nbsp;
-          <a href="https://www.linkedin.com/in/amany-ali-2785771a/" target="_blank" rel="noopener">LinkedIn</a> &nbsp;•&nbsp;
-          <a href="https://github.com/AmanyAli" target="_blank" rel="noopener">GitHub</a> &nbsp;•&nbsp;
-          <a href="mailto:amany.a.ali@gmail.com">amany.a.ali@gmail.com</a>
-        </p>
+        <p class="subtitle-ar">مهندسة اتصالات وبرمجيات أولى | مدربة أيكيدو 3 دان ودفاع عن النفس سيدات وأطفال</p>
+        
+        <div class="meta">
+          <span>📍 Cairo, Egypt</span>
+          <span class="separator">|</span>
+          <a href="https://www.linkedin.com/in/amany-ali-2785771a/" target="_blank" rel="noopener">LinkedIn</a>
+          <span class="separator">|</span>
+          <a href="https://github.com/AmanyAli" target="_blank" rel="noopener">GitHub</a>
+          <span class="separator">|</span>
+          <a href="mailto:amany.a.ali@gmail.com">Email</a>
+        </div>
       </div>
     </header>
 
@@ -289,6 +360,7 @@
       </p>
     </section>
 
+    <!-- Rest of the content remains unchanged -->
     <section>
       <h2>Published Scientific Research | الأبحاث العلمية المنشورة</h2>
       <div class="research-card">
@@ -366,109 +438,61 @@
       <h2>Aikido Training, Examinations &amp; Coaching Gallery | معرض صور التدريب</h2>
       <div class="gallery">
         <figure>
-          <img
-            src="images/1.jpg"
-            alt="Amany Abd El-Tawab Ali presenting at the 'Egyptian Girl Is a Red Line' event at Capital University, demonstrating Aikido self-defense for women (دفاع عن النفس سيدات)"
-          />
+          <img src="images/1.jpg" alt="Amany Abd El-Tawab Ali presenting at the 'Egyptian Girl Is a Red Line' event at Capital University, demonstrating Aikido self-defense for women (دفاع عن النفس سيدات)" />
           <figcaption>“فتاة مصر خط أحمر” Event – Capital University: Aikido Presentation</figcaption>
         </figure>
         <figure>
-          <img
-            src="images/2.png"
-            alt="Aikido demonstration led by Amany Abd El-Tawab Ali for participants at the 'Egyptian Girl Is a Red Line' event, Capital University"
-          />
+          <img src="images/2.png" alt="Aikido demonstration led by Amany Abd El-Tawab Ali for participants at the 'Egyptian Girl Is a Red Line' event, Capital University" />
           <figcaption>“فتاة مصر خط أحمر” Event – Capital University: Aikido Demonstration</figcaption>
         </figure>
         <figure>
-          <img
-            src="images/3.png"
-            alt="Amany Abd El-Tawab Ali demonstrating Aikido self-defense techniques during the 'Egyptian Girl Is a Red Line' event at Capital University"
-          />
+          <img src="images/3.png" alt="Amany Abd El-Tawab Ali demonstrating Aikido self-defense techniques during the 'Egyptian Girl Is a Red Line' event at Capital University" />
           <figcaption>“فتاة مصر خط أحمر” Event – Capital University: Self-Defense Demonstration</figcaption>
         </figure>
         <figure>
-          <img
-            src="images/4.png"
-            alt="Amany Abd El-Tawab Ali conducting practical Aikido training at the 'Egyptian Girl Is a Red Line' event, Capital University"
-          />
+          <img src="images/4.png" alt="Amany Abd El-Tawab Ali conducting practical Aikido training at the 'Egyptian Girl Is a Red Line' event, Capital University" />
           <figcaption>“فتاة مصر خط أحمر” Event – Capital University: Practical Aikido Training</figcaption>
         </figure>
         <figure>
-          <img
-            src="images/refree.jpg"
-            alt="Amany Abd El-Tawab Ali Refereeing in Aikido Kyu Exam in Egypt"
-          />
+          <img src="images/refree.jpg" alt="Amany Abd El-Tawab Ali Refereeing in Aikido Kyu Exam in Egypt" />
           <figcaption>Refereeing in Aikido Kyu Exam</figcaption>
         </figure>
         <figure>
-          <img
-            src="images/ref2.jpg"
-            alt="Amany Ali Aikido Kyu Exam Referee and Technical Committee Egypt"
-          />
+          <img src="images/ref2.jpg" alt="Amany Ali Aikido Kyu Exam Referee and Technical Committee Egypt" />
           <figcaption>Aikido Kyu Exam – Refereeing &amp; Technical Evaluation</figcaption>
         </figure>
-        
         <figure>
-          <img
-            src="images/Nidan1.jpg"
-            alt="Amany Abd El-Tawab Ali Nidan 2nd Dan Certification"
-          />
+          <img src="images/Nidan1.jpg" alt="Amany Abd El-Tawab Ali Nidan 2nd Dan Certification" />
           <figcaption>Nidan (2nd Dan) Certification Journey</figcaption>
         </figure>
         <figure>
-          <img
-            src="images/Nidan2.jpg"
-            alt="Amany Abd El-Tawab Ali Aikido Nidan Exam"
-          />
+          <img src="images/Nidan2.jpg" alt="Amany Abd El-Tawab Ali Aikido Nidan Exam" />
           <figcaption>Nidan (2nd Dan) Examination &amp; Evaluation</figcaption>
         </figure>
         <figure>
-          <img
-            src="images/Nidan4.jpg"
-            alt="Amany Ali Aikido Nidan Certification Milestone"
-          />
+          <img src="images/Nidan4.jpg" alt="Amany Ali Aikido Nidan Certification Milestone" />
           <figcaption>Nidan (2nd Dan) Milestone</figcaption>
         </figure>
-        
         <figure>
-          <img
-            src="images/takreem1.jpg"
-            alt="Amany Abd El-Tawab Ali Aikido Recognition"
-          />
+          <img src="images/takreem1.jpg" alt="Amany Abd El-Tawab Ali Aikido Recognition" />
           <figcaption>Aikido Recognition &amp; Achievement</figcaption>
         </figure>
         <figure>
-          <img
-            src="images/takreem2.jpg"
-            alt="Amany Abd El-Tawab Ali Aikido Award"
-          />
+          <img src="images/takreem2.jpg" alt="Amany Abd El-Tawab Ali Aikido Award" />
           <figcaption>Aikido Award Ceremony</figcaption>
         </figure>
-
         <figure>
-          <img
-            src="images/Screenshot.jpg"
-            alt="Amany Abd El-Tawab Ali - Aikido Dojo Screenshot"
-          />
+          <img src="images/Screenshot.jpg" alt="Amany Abd El-Tawab Ali - Aikido Dojo Screenshot" />
           <figcaption>Aikido Practice &amp; Dojo Moments</figcaption>
         </figure>
-
         <figure>
-          <img
-            src="images/exam.jpeg"
-            alt="Aikido Belt Promotion Exam and Evaluation – Amany Abd El-Tawab Ali Egypt"
-          />
+          <img src="images/exam.jpeg" alt="Aikido Belt Promotion Exam and Evaluation – Amany Abd El-Tawab Ali Egypt" />
           <figcaption>Aikido Belt Examination &amp; Grading Session</figcaption>
         </figure>
-
         <figure class="gallery-cert">
-          <img
-            src="images/Dan3Cert.jpeg"
-            alt="Aikikai Hombu Dojo Tokyo Japan 3rd Dan Sandan Black Belt Certificate - Amany Abd El-Tawab Ali (شهادة دان 3 أيكيدو)"
-          />
+          <img src="images/Dan3Cert.jpeg" alt="Aikikai Hombu Dojo Tokyo Japan 3rd Dan Sandan Black Belt Certificate - Amany Abd El-Tawab Ali (شهادة دان 3 أيكيدو)" />
           <figcaption><strong>Official 3rd Dan (Sandan) Black Belt Certificate</strong> – Aikikai Hombu Dojo, Tokyo, Japan</figcaption>
         </figure>
-
       </div>
     </section>
 
