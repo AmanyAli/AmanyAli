@@ -1,12 +1,12 @@
 # Amany Abd El-Tawab Ali | أماني عبد التواب علي
 
-**Senior Software Engineer (Full-Stack Java & Salesforce)** • **3rd Dan (Sandan) Aikido Instructor in Cairo, Egypt**  
-📍 Cairo, Egypt • ✉️ [amany.a.ali@gmail.com](mailto:amany.a.ali@gmail.com • 🔗 [LinkedIn](https://www.linkedin.com/in/amany-ali-2785771a/)
+**Communication Engineer | Senior Software Engineer (Full-Stack Java & Salesforce)** • **3rd Dan (Sandan) Aikido Instructor in Cairo, Egypt**  
+📍 Cairo, Egypt • ✉️ [amany.a.ali@gmail.com](mailto:amany.a.ali@gmail.com) • 🔗 [LinkedIn](https://www.linkedin.com/in/amany-ali-2785771a/) • 🌐 [Live Website](https://amanyali.github.io/AmanyAli/)
 
 ---
 
-### 🧭 Professional Summary
-I am a **Senior Software Engineer** specializing in **Full-Stack Java and Salesforce development**, and a certified **Female Aikido Instructor in Egypt** holding a **3rd Dan (Sandan) black belt from the Aikikai Hombu Dojo in Tokyo, Japan**.
+### 🧭 Professional Summary | نبذة عني
+I am a **Communication Engineer** and a **Senior Software Engineer** specializing in **Full-Stack Java and Salesforce development**. I am also a certified **Female Aikido Instructor in Egypt** (مدربة أيكيدو 3 دان) holding a **3rd Dan (Sandan) black belt from the Aikikai Hombu Dojo in Tokyo, Japan**.
 
 My work bridges global enterprise software architecture with the physical, mental, and strategic discipline of Aikido—bringing structured problem-solving, calm leadership, and dedicated mentorship to both engineering teams and martial arts students in Cairo.
 
@@ -27,9 +27,10 @@ My work bridges global enterprise software architecture with the physical, menta
 
 ---
 
-### 🥋 Aikido Instruction & Martial Arts Credentials (Egypt)
+### 🥋 Aikido Instruction & Martial Arts Credentials (Egypt) | مدربة أيكيدو
 * **Rank:** **3rd Dan (Sandan) Black Belt** in Aikido, officially certified by **Aikikai Hombu Dojo (Tokyo, Japan)**.
-* **Coaching & Classes in Cairo:** Certified Aikido coach specializing in **ladies-only (سيدات) and youth/children's classes** in Cairo, Egypt—focusing on spatial awareness, self-defense, discipline, and physical confidence.
+* **Coaching & Classes in Cairo:** Certified Aikido coach specializing in **ladies-only (دفاع عن النفس سيدات) and youth/children's classes (تدريب أيكيدو للاطفال)** in Cairo, Egypt—focusing on spatial awareness, self-defense, discipline, and physical confidence.
+* **Multilingual Instruction:** Classes available for **Expats** in English, Arabic, and Italian (Istruttore di Aikido al Cairo).
 * **Certifications:** Certified by the **Egyptian Olympic Committee** (Foundational Sports Coaching Course) & member of the **Egyptian Syndicate of Sports Professions**.
 
 ---
@@ -43,3 +44,7 @@ My work bridges global enterprise software architecture with the physical, menta
 ### 🎓 Education & Languages
 * **B.Sc. in Electronic Engineering (Communications)** – Faculty of Electronic Engineering (Class of 2004)
 * **Languages:** Arabic (Native), English (Professional), Italian, French, German, Spanish, Russian
+
+---
+
+<!-- Keywords for GitHub Search: Communication Engineer, Senior Software Engineer, Salesforce Developer, Java Developer, 3rd Dan Aikido Instructor, مدربة أيكيدو 3 دان, دفاع عن النفس سيدات, تدريب أيكيدو للاطفال, Aikido for Expats Cairo, English Speaking Aikido Instructor -->
