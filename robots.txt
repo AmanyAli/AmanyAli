@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://amanyali.github.io/AmanyAli/sitemap.xml
